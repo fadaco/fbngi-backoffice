@@ -120,44 +120,23 @@ fetch('https://fast-forest-82655.herokuapp.com/api/ussd/fetch_transaction', {
     if(data.status) {
         data.data.forEach((dt) => {
            
-            var formData = new FormData();
-            formData.append('data', dt.plate_no);  
-            
-            fetch('http://41.75.199.82:82/fbnmobile/api/motorinsurance', {
-                        method: 'POST',
-                        body: formData
-                  }).then((res) => res.json()).then((dat) => {
-                     console.log(dat)
-
-                     document.querySelector('#rows').innerHTML += `
-                     <div class="col s12 m6">
-                     <div class="card">
-                       <div class="card-content" style="padding: 12px">
-                         <div class="container-p info-container divCont">
-                             <div class="main-prinary-text"><a href="./claim_detail.html?name=${dat?.data?.FULL_NAME}&claimNo=${dt.claim_no}">${dt.claim_no}</a></div>
-                             <div class="subtitle-title-2 subtitle-title" style="color: #ffffff">Active</div>
-                         </div>
-                         <div class="container-p info-container">
-                             <div class="textsub main-prinary-text">${dat?.data?.FULL_NAME}</div>
-                             <div class="textsub subtitle-title">${dat?.data?.POLICY_NO}</div>
-                         </div>
-                       </div>
-                     </div>
-                   </div>
-                     `
-
-                  }).catch((e) => {
-                    console.log(e);
-            
-            
-                  })
-
-
-
-
-
-
-
+        
+            document.querySelector('#rows').innerHTML += `
+            <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content" style="padding: 12px">
+                <div class="container-p info-container divCont">
+                    <div class="main-prinary-text"><a href="./claim_detail.html?name=${dt.full_name}&claimNo=${dt.claim_no}">${dt.claim_no}</a></div>
+                    <div class="subtitle-title-2 subtitle-title" style="color: #ffffff">Active</div>
+                </div>
+                <div class="container-p info-container">
+                    <div class="textsub main-prinary-text">${dt.full_name}</div>
+                    <div class="textsub subtitle-title">${dt?.policy_no}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+            `
 
 
 
@@ -166,7 +145,6 @@ fetch('https://fast-forest-82655.herokuapp.com/api/ussd/fetch_transaction', {
 
 
                 })
-        console.log(data.data.length)
     }
 })
 .catch((err) => console.log(err))
