@@ -42,9 +42,6 @@ let sparePart = [{
 
 let claimDetails = [];
 
-console.log(location.search.substring(location.search.indexOf('=') + 1))
-console.log(location.search.substring(location.search.indexOf('=') + 1, location.search.indexOf('&')).replaceAll('%20', ' '))
-
 document.querySelector('#addItem')?.addEventListener('click', function(){
     if(document.querySelector('#part').value && document.querySelector('#part_amount').value && document.querySelector('#claim_type').value){
         const data = {
