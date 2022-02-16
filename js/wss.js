@@ -9,6 +9,7 @@ let socketIO = null;
         socketIO = socket;
         socket.emit('addUser', localStorage.getItem('staffid'))
         socket.on('getUser', (user) => {
+            console.log('a user just join')
             const users = user.filter(us => us.id === localStorage.getItem('staffid'));
             if(users.length > 0) {
             store.setOnlineUsers(user);
@@ -16,8 +17,9 @@ let socketIO = null;
             ui.updatePersonalCode(users[0].socketId)
             const remoteuser = user.filter(us => us.id !== localStorage.getItem('staffid'))
             console.log(remoteuser);
-            // store.re
+            if(remoteuser.length > 0) {
             document.querySelector('#remote_code').value = remoteuser[0].socketId;
+            }
             }
         });
 
