@@ -5,8 +5,10 @@ import * as constants from './constants.js';
 
 //const socket = io("http://localhost:4000");
 const socket = io("https://fast-forest-82655.herokuapp.com")
+
 wss.registerSocketEvents(socket);
-webRTCHandler.getLocalPreview();  
+webRTCHandler.getLocalPreview();
+
 
 document.querySelector('#call_video')?.addEventListener('click', function(e){
     e.preventDefault()

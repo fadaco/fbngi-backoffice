@@ -119,8 +119,7 @@ fetch('https://fast-forest-82655.herokuapp.com/api/ussd/fetch_transaction', {
 .then((data) => {
     if(data.status) {
         data.data.forEach((dt) => {
-           
-        
+            
             document.querySelector('#rows').innerHTML += `
             <div class="col s12 m6">
             <div class="card">
@@ -137,12 +136,6 @@ fetch('https://fast-forest-82655.herokuapp.com/api/ussd/fetch_transaction', {
             </div>
           </div>
             `
-
-
-
-
-
-
 
                 })
     }
@@ -221,6 +214,7 @@ document.addEventListener('click',function(e){
 
 
 document.querySelector('#submit-data')?.addEventListener('click', function(){
+    console.log(claimDetails);
     M.toast({html: 'Offer Successfully Sent'})
 
 })
@@ -275,16 +269,7 @@ document.querySelector('.button_spart_part')?.addEventListener('click', function
     })
 
 })
-
-fetch('https://fbngi-ecosystem.com/Apps/Test/ePortal/testApi/crudSparepart.php', {
-    method: 'GET'
-})
-.then((res) => res.json())
-    .then((data) => {
-        console.log(data);
-    }).catch((error) => {
-        console.log(error);
-    })
+ 
 
 
 document.querySelector('.claimgenno') ? document.querySelector('.claimgenno').innerHTML = location.search.substring(location.search.lastIndexOf('=') + 1) : null;
