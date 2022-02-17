@@ -15,6 +15,7 @@ document.querySelector('#call_video')?.addEventListener('click', function(e){
     const calleePersonalCode = document.querySelector('#remote_code').value;
     const callType = constants.callType.VIDEO_PERSONAL_CODE;
     webRTCHandler.sendPreOffer(callType, calleePersonalCode)
+    //this.classList.add('hide')
 });
 
 

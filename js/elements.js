@@ -5,21 +5,27 @@ export const getIncomingCallDialog = (callTypeInfo, acceptCallHandler, rejectCal
     dialogContent.classList.add('dialog_content');
     dialog.appendChild(dialogContent)
     const title = document.createElement('p');
-    title.innerHTML = `Incoming ${callTypeInfo} Call`;
+    title.classList.add('para-1')
+    title.innerHTML = `Incoming ${callTypeInfo} Call...`;
 
     const buttonContainer = document.createElement('div')
+    buttonContainer.classList.add('container-call-div')
 
-    const acceptCallButton = document.createElement('button');
-    acceptCallButton.classList.add('btn')
-    acceptCallButton.classList.add('btn-success')
-    acceptCallButton.innerHTML = 'accept'
+    const acceptCallButton = document.createElement('div');
+    acceptCallButton.classList.add('btns')
+  //  acceptCallButton.classList.add('btn-success')
+    acceptCallButton.innerHTML = ` <div class="call-container" id="call_video">
+    <ion-icon name="call"></ion-icon>
+</div>`;
     buttonContainer.appendChild(acceptCallButton)
 
 
-    const rejectCallButton = document.createElement('button');
-    rejectCallButton.classList.add('btn')
-    rejectCallButton.classList.add('btn-danger')
-    rejectCallButton.innerHTML = 'reject'
+    const rejectCallButton = document.createElement('div');
+    rejectCallButton.classList.add('btns')
+  //  rejectCallButton.classList.add('btn-danger')
+    rejectCallButton.innerHTML = `<div class="call-container-stop">
+    <ion-icon name="stop"></ion-icon>
+</div>`;
     buttonContainer.appendChild(rejectCallButton)
 
     dialogContent.appendChild(title)
@@ -45,14 +51,18 @@ export const getCallingDialog = (rejectCallHandler) => {
     dialogContent.classList.add('dialog_content');
     dialog.appendChild(dialogContent)
     const title = document.createElement('p');
+    title.classList.add('para-1')
+
     title.innerHTML = `Calling...`;
 
     const buttonContainer = document.createElement('div')
 
-    const hangUpCallButton = document.createElement('button');
-    hangUpCallButton.classList.add('btn')
-    hangUpCallButton.classList.add('btn-danger')
-    hangUpCallButton.innerHTML = 'reject call'
+    const hangUpCallButton = document.createElement('div');
+    hangUpCallButton.classList.add('btns')
+   // hangUpCallButton.classList.add('btn-danger')
+    hangUpCallButton.innerHTML =  `<div class="call-container-other">
+    <ion-icon name="stop"></ion-icon>
+</div>`;
     buttonContainer.appendChild(hangUpCallButton)
 
     dialogContent.appendChild(title)

@@ -42,6 +42,38 @@ let sparePart = [{
 
 let claimDetails = [];
 
+document.querySelector('#loginToPortal')?.addEventListener('click', function(){
+    if(document.querySelector('#ficNo').value === '') {
+        M.toast({html: 'Enter your email to procceed..'})
+    } else {
+        
+        fetch('https://fast-forest-82655.herokuapp.com/api/verify_user', {
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json',
+                'Accept':'application/json'
+            },
+            body: JSON.stringify({
+                username: document.querySelector('#ficNo').value.toLowerCase()
+            })
+
+        }).then((res) => res.json())
+        .then((response) => {
+            if(response.status) {
+                sessionStorage.setItem('staffid', response?.data?.username)
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000)    
+            } else {
+                M.toast({html: `${response.message}...`})
+            }
+        })
+        .catch((err) => console.log('eeee'))
+    }
+})
+ 
+
 document.querySelector('#addItem')?.addEventListener('click', function(){
     if(document.querySelector('#part').value && document.querySelector('#part_amount').value && document.querySelector('#claim_type').value){
         const data = {
@@ -105,7 +137,7 @@ document.querySelector('#searchForPrice')?.addEventListener('keyup', function(e)
 });
 
 const data = {
-    fic: localStorage.getItem('staffid')
+    fic: sessionStorage.getItem('staffid')
 }
 
 fetch('https://fast-forest-82655.herokuapp.com/api/ussd/fetch_transaction', {
@@ -269,7 +301,17 @@ document.querySelector('.button_spart_part')?.addEventListener('click', function
     })
 
 })
- 
+
+
+if(sessionStorage.getItem('staffid')) {
+    document.querySelector('.main-cont-s')?.classList.remove('hide')
+    document.querySelector('.main-login')?.classList.add('hide')
+} else {
+    document.querySelector('.main-cont-s')?.classList.add('hide')
+    document.querySelector('.main-login')?.classList.remove('hide')
+}
+
+
 
 
 document.querySelector('.claimgenno') ? document.querySelector('.claimgenno').innerHTML = location.search.substring(location.search.lastIndexOf('=') + 1) : null;
